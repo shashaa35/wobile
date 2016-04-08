@@ -33,9 +33,10 @@ class Main extends CI_Controller {
 	public function signup()
 	{
 		$message="";
-		$username=$this->input->get("username");
-		$password=$this->input->get("password");
-		$status=$this->users_model->signup($username,$password);
+		$username=$_REQUEST("username");
+		$password=$_REQUEST("password");
+		$email=$_REQUEST('email');
+		$status=$this->users_model->signup($username,$password,$email);
 		if($status)
 		{
 			$message="sign up successful";
@@ -58,8 +59,8 @@ class Main extends CI_Controller {
 		}
 		else
 		{
-		$username=$this->input->get("username");
-		$password=$this->input->get("password");
+		$username=$_REQUEST("username");
+		$password=$_REQUEST("password");
 		$exist=$this->users_model->login($username,$password);
 		if($exist)
 		{
@@ -73,6 +74,10 @@ class Main extends CI_Controller {
 			echo json_encode($message);
 		}
 		}
+	}
+	public function create_contact()
+	{
+		
 	}
 	
 
