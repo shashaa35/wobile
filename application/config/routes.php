@@ -41,6 +41,7 @@
 
 $route['default_controller'] = 'main';
 
+$route['test']="main/test";
 $route['signup']="main/signup";
 $route['login']="main/login";
 // $route['index']="Main/index";

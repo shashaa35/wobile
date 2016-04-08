@@ -40,16 +40,22 @@ app.controller('mycontroller', function ($scope, $http) {
 		});	
 
 		$http.get('signup').success (function(data){
+    $scope.signup=function(){
+		console.log("working")			
+		$http.get('index.php/signup').success (function(data){
              console.log(data);
+             console.log("hello");
 	         }).
 	error(function(data){
-		console.log("error");
+		// console.log("error");
 	})
 	}
+
 	 $scope.login=function(){	
      	var res=$http.post('index.php/signup',$scope.details);
      
 	}
+
 
 });
 
