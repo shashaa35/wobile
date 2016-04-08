@@ -14,7 +14,9 @@ app.controller('mycontroller', function ($scope, $http) {
 	$scope.showing=true;
 	$scope.show=function(){
 	$scope.showing=!$scope.showing;
-	var signup=function(){
+	
+	}
+    $scope.signup=function(){
 		console.log("working")			
 		$http.get('signup').success (function(data){
              console.log(data);
@@ -23,7 +25,5 @@ app.controller('mycontroller', function ($scope, $http) {
 		console.log("error");
 	})
 	}
-	}
-
 });
 
