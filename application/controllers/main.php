@@ -37,9 +37,10 @@ class Main extends CI_Controller {
 	public function signup()
 	{
 		$message="";
-		$username=$this->input->get("username");
-		$password=$this->input->get("password");
-		$email=$this->input->get("email");
+		print_r($_POST['data']);
+		$username=$this->input->post("username");
+		$password=$this->input->post("password");
+		$email=$this->input->post("email");
 		$status=$this->users_model->signup($username,$password,$email);
 		if($status)
 		{

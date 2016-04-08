@@ -11,16 +11,16 @@ controller:'mycontroller'
 })
 }]);
 app.controller('mycontroller', function ($scope, $http) {
-	$scope.showing=true;
-	 $scope.name="";
-    $scope.password="";
+		$scope.showing=true;
+		$scope.name="";
+	    $scope.password="";
 
 	
 
-	$scope.show=function(){
-	$scope.showing=!$scope.showing;
-	
-	}
+		$scope.show=function(){
+			$scope.showing=!$scope.showing;
+		
+		}
     $scope.signup=function(name,password,email){
 		console.log("working");
         $scope.name=name,
@@ -30,26 +30,22 @@ app.controller('mycontroller', function ($scope, $http) {
         password:$scope.password,
         email:$scope.email
 	    }	
-	    var res=$http.post('index.php/signup',$scope.details);
+
+	    var res=
+			$http({
+			    method: "post",
+			    url: 'index.php/signup',
+			    data: 'data='+JSON.stringify($scope.details),
+			    headers: {'Content-Type': 'application/x-www-form-urlencoded' }
+			});
 	    	res.success(function(data, status, headers, config) {
-           
+            console.log($scope.details);
 			$scope.message = data;
 		});
 		res.error(function(data, status, headers, config) {
 			alert( "failure message: " + JSON.stringify({data: data}));
 		});	
 
-		$http.get('signup').success (function(data){
-    $scope.signup=function(){
-		console.log("working")			
-		$http.get('index.php/signup').success (function(data){
-             console.log(data);
-             console.log("hello");
-	         }).
-	error(function(data){
-		// console.log("error");
-	})
-	}
 
 	 $scope.login=function(){	
      	var res=$http.post('index.php/signup',$scope.details);
@@ -57,5 +53,7 @@ app.controller('mycontroller', function ($scope, $http) {
 	}
 
 
+	}
 });
+
 
