@@ -25,6 +25,10 @@ class Main extends CI_Controller {
 		$this->load->library('session');
 		$this->load->helper( 'url');
 	}
+	public function test()
+	{
+		echo "string";
+	}
 	public function index()
 	{
 
@@ -33,9 +37,9 @@ class Main extends CI_Controller {
 	public function signup()
 	{
 		$message="";
-		$username=$_REQUEST("username");
-		$password=$_REQUEST("password");
-		$email=$_REQUEST('email');
+		$username=$this->input->get("username");
+		$password=$this->input->get("password");
+		$email=$this->input->get("email");
 		$status=$this->users_model->signup($username,$password,$email);
 		if($status)
 		{
@@ -77,7 +81,7 @@ class Main extends CI_Controller {
 	}
 	public function create_contact()
 	{
-		
+
 	}
 	
 

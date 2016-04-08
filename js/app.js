@@ -18,11 +18,12 @@ app.controller('mycontroller', function ($scope, $http) {
 	}
     $scope.signup=function(){
 		console.log("working")			
-		$http.get('signup').success (function(data){
+		$http.get('index.php/signup').success (function(data){
              console.log(data);
+             console.log("hello");
 	         }).
 	error(function(data){
-		console.log("error");
+		// console.log("error");
 	})
 	}
 });
