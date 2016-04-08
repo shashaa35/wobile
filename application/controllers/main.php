@@ -63,14 +63,14 @@ class Main extends CI_Controller {
 		}
 		else
 		{
-		$username=$_REQUEST("username");
-		$password=$_REQUEST("password");
+		$username=$this->input->post("username");
+		$password=$this->input->post("password");
 		$exist=$this->users_model->login($username,$password);
 		if($exist)
 		{
 			$this->session->set_userdata('username',$username);
 			$this->session->set_userdata('password',$password);
-			$this->load->view('welcome.php');
+			echo json_encode("successful");
 		}
 		else
 		{//back button
@@ -81,7 +81,25 @@ class Main extends CI_Controller {
 	}
 	public function create_contact()
 	{
+		$username=$this->session->userdata("username");
+		$password=$this->session->userdata("password");
+		$user_id=$this->users_model->get_user_id($username,$password);
 
+		$name=$this->input->post("name");
+		$fb_link=$this->input->post("fb_link");
+		$email=$this->input->post("email");
+		$phone=$this->input->post("phone");
+
+		$this->users_model->insert_contact($user_id,$name,$fb_link,$email,$phone);
+	}
+	public function recent()
+	{
+		$username=$this->session->userdata("username");
+		$password=$this->session->userdata("password");
+		$user_id=$this->users_model->get_user_id($username,$password);
+
+		$arr=$this->users_model->get_recents($user_id);
+		echo json_encode($arr);
 	}
 	
 
